@@ -5,7 +5,7 @@ import "../styles/globals.css";
 const Layout = ({ children }) => {
   return (
     <html lang="fa-IR">
-      <body>
+      <body className="flex flex-col gap-8">
         <Header />
         {children}
         <Footer />

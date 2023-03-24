@@ -24,7 +24,9 @@ const Header = () => {
             <NavElemetn href="/movies" name="فیلم ها" />
           </ul>
         </nav>
-        <div className="text-3xl">موووی باز</div>
+        <Link href="/" className="text-3xl">
+          موووی باز
+        </Link>
       </div>
     </header>
   );
