@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 const getData = async () => {
   const response = await fetch(
@@ -15,11 +16,12 @@ const HomePage = async () => {
       <div className="text-center text-2xl text-blue-900">صفحه اصلی</div>
       <div className="flex justify-between items-center flex-wrap">
         {moviesData?.data?.map((item, index) => (
-          <div
+          <Link
             key={index}
             className="h-[30rem] my-4 w-72 border-2 border-zinc-300 rounded-2xl p-4 relative flex flex-col gap-4"
+            href={`/movies/${item.id}`}
           >
-            <div className="flex justify-center items-center">
+            <div className="justify-center items-center">
               <Image
                 width={240}
                 height={260}
@@ -28,7 +30,7 @@ const HomePage = async () => {
                 className="rounded-2xl"
               />
             </div>
-            <h3>{item.title}</h3>
+            <h3 className="flex justify-center items-center">{item.title}</h3>
             <div className="absolute bottom-2 right-2 left-2 flex justify-between items-center">
               <div className="px-2 py-1 bg-zinc-200 rounded-md">
                 {item.year}
@@ -37,7 +39,7 @@ const HomePage = async () => {
                 {item.country}
               </div>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </main>
