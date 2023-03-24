@@ -1,3 +1,4 @@
+import NotFound from "@/app/not-found";
 import Image from "next/image";
 
 const getSingleMovie = async (id) => {
@@ -9,8 +10,13 @@ const getSingleMovie = async (id) => {
 
 const Single = async ({ params }) => {
   const data = await getSingleMovie(params?.id);
+
+  if (!data.id) {
+    return <NotFound />;
+  }
+
   return (
-    <main className="container mx-auto flex flex-col gap-12">
+    <div className="container mx-auto flex flex-col gap-12">
       <section className="rounded-lg bg-zinc-100 p-8 flex justify-between items-start">
         <div className="flex flex-col gap-8">
           <div className="flex flex-col gap-4">
@@ -51,7 +57,7 @@ const Single = async ({ params }) => {
           />
         </div>
       </section>
-      <section className="flex justify-between items-center">
+      <section className="flex justify-around items-center flex-wrap">
         {data.images.map((item, index) => (
           <Image
             width={400}
@@ -60,11 +66,11 @@ const Single = async ({ params }) => {
             alt={item}
             src={item}
             priority={true}
-            className="rounded-xl"
+            className="rounded-xl my-4"
           />
         ))}
       </section>
-    </main>
+    </div>
   );
 };
 
